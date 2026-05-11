@@ -10,9 +10,33 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/gdtech-portfolio/assets/index-CbLyRVAE.js"></script>
-    <link rel="stylesheet" crossorigin href="/gdtech-portfolio/assets/index-DpBv3E6s.css">
+    <title>Gaurav Desai · Software & ML Engineer</title>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("gd_theme");
+          var theme = stored === "light" || stored === "dark" || stored === "system"
+            ? stored
+            : "system";
+          var resolved =
+            theme === "system"
+              ? (window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "dark"
+                  : "light")
+              : theme;
+          var root = document.documentElement;
+          root.classList.remove("dark", "light");
+          root.classList.add(resolved);
+          root.dataset.theme = resolved;
+          root.style.colorScheme = resolved;
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/gdtech-portfolio/assets/index-CK-8X99M.js"></script>
+    <link rel="stylesheet" crossorigin href="/gdtech-portfolio/assets/index-6LkNQFI4.css">
   </head>
   <body>
     <div id="root"></div>
