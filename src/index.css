@@ -1,12 +1,47 @@
 @import "tailwindcss";
 
-html,
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #0a0a0a;
+  --bg-elevated: #111114;
+  --bg-overlay: rgba(10, 10, 10, 0.8);
+  --fg: #f3f4f6;
+  --fg-muted: #d1d5db;
+  --fg-subtle: #9ca3af;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.4);
+  --card-bg: rgba(255, 255, 255, 0.03);
+}
+
+.light {
+  --bg: #ffffff;
+  --bg-elevated: #f8fafc;
+  --bg-overlay: rgba(255, 255, 255, 0.85);
+  --fg: #0f172a;
+  --fg-muted: #475569;
+  --fg-subtle: #64748b;
+  --border: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.16);
+  --accent: #2563eb;
+  --accent-glow: rgba(37, 99, 235, 0.18);
+  --card-bg: rgba(15, 23, 42, 0.03);
+}
+
+html {
+  background: var(--bg);
+  transition: background-color 0.4s ease;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Space Grotesk", sans-serif;
-  background: #0a0a0a;
-  color: #f3f4f6;
+  background: transparent;
+  color: var(--fg);
+  transition: color 0.4s ease;
 }
 
 @layer utilities {
@@ -36,6 +71,62 @@ body {
   .animate-loading-bar {
     animation: loading 0.8s ease infinite;
   }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes blob-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(4%, -3%, 0) scale(1.06);
+    }
+    66% {
+      transform: translate3d(-3%, 4%, 0) scale(0.96);
+    }
+  }
+
+  .animate-blob {
+    animation: blob-drift 22s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes persona-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .animate-persona-bob {
+    animation: persona-bob 3.2s ease-in-out infinite;
+  }
+
+  @keyframes persona-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-persona-ring {
+    animation: persona-spin 11s linear infinite;
+  }
 }
 
 .reveal {
@@ -47,4 +138,25 @@ body {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  html,
+  body {
+    transition: none !important;
+  }
+  .animate-blink,
+  .animate-loading-bar,
+  .animate-float,
+  .animate-blob,
+  .animate-persona-bob,
+  .animate-persona-ring {
+    animation: none !important;
+  }
+}
+
+/* react-github-calendar overrides for theme */
+.react-activity-calendar text {
+  fill: var(--fg-subtle) !important;
 }
