@@ -96,7 +96,7 @@ export const siteConfig = {
         "Cloudinary",
         "Quill",
       ],
-      live: "https://blog-space-git-development-dgkans-projects.vercel.app/",
+      live: "https://blog-space-nine-iota.vercel.app/",
     },
     AetherVaultBlockchain: {
       displayName: "AetherVault — NFT Auction DApp",
